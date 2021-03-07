@@ -14,6 +14,8 @@ AddEventHandler(
         local xPlayer = ESX.GetPlayerFromId(_source)
         local player = xPlayer.getIdentifier()
         local result = MySQL.Sync.fetchAll("SELECT * FROM users WHERE identifier=@username", {["@username"] = player})
+        print("in create sign, did MYSQL")
+        print(result)
         if result[1] then
             print(result[1])
             print(xPlayer)
