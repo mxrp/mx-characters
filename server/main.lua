@@ -1,4 +1,4 @@
-RegisterServerEvent("mx-characters:loadCharacters")
+RegisterNetEvent("mx-characters:loadCharacters")
 AddEventHandler(
     "mx-characters:loadCharacters",
     function(characters)
