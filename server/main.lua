@@ -1,4 +1,4 @@
-RegisterServerEvent("mx-characters:loadCharacters")
+RegisterServerEvent("loadCharacters")
 AddEventHandler(
     "loadCharacters",
     function(characters)
@@ -43,7 +43,7 @@ AddEventHandler(
         MySQL.Async.execute(
             "INSERT INTO users (identifier, ssn, job, job_grade, first_name, last_name, dob, height,) VALUES (@identifier, @ssn, @job, @job_grade, @first_name, @last_name, @dob, @height)",
             {
-                ["@identifier"] = data.identifier,
+                ["@identifier"] = data.identifier .. "::" .. ssn,
                 ["@ssn"] = generateSSN(),
                 ["@job"] = data.job,
                 ["@job_grade"] = data.job_grade,
