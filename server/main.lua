@@ -2,6 +2,7 @@ RegisterServerEvent("mx-characters:loadCharacters")
 AddEventHandler(
     "mx-characters:loadCharacters",
     function(characters)
+        print("Going to send NUI Message")
         -- array of chars from the database
         SendNuiMessage(json.encode(characters))
     end

@@ -6,6 +6,7 @@ Citizen.CreateThread(
             TriggerEvent(
                 "esx:getSharedObject",
                 function(obj)
+                    print("GOT ESX OBJECT")
                     ESX = obj
                 end
             )
