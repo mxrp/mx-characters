@@ -1,6 +1,6 @@
-RegisterNetEvent("mx-characters:loadCharacters")
+RegisterServerEvent("mx-characters:loadCharacters")
 AddEventHandler(
-    "mx-characters:loadCharacters",
+    "loadCharacters",
     function(characters)
         print("Going to send NUI Message")
         -- array of chars from the database
