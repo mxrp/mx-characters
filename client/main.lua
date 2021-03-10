@@ -18,6 +18,7 @@ RegisterNetEvent(
     "mx-characters:loadCharacters",
     function(characters)
         print("got the client event")
+        print(json.encode(characters))
         SendNUIMessage(json.encode(characters))
     end
 )
