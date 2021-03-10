@@ -14,7 +14,7 @@ Citizen.CreateThread(
     end
 )
 
-RegisterNuiCallback(
+RegisterNUICallback(
     "createCharacter",
     function(data, cb)
         -- data is the Created Character
