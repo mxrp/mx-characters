@@ -1,3 +1,48 @@
+ESX = nil
+TriggerEvent(
+    "esx:getSharedObject",
+    function(obj)
+        print("got  ESX object on server")
+        ESX = obj
+    end
+)
+
+AddEventHandler(
+    "playerConnecting",
+    function(playerName, setKickReason, deferrals)
+        local playerId, identifier = source
+
+        for l, v in ipairs(GetPlayerIdentifiers(playerId)) do
+            if string.match(v, "license:") then
+                identifier = string.sub(v, 9)
+                break
+            end
+        end
+        if identifier then
+            MySQL.Async.fetchScalar(
+                'SELECT * FROM users WHERE identifier like "' .. identifier .. '%"',
+                {},
+                function(result)
+                    print("triggering mx-character event")
+                    -- loadESXPlayer(identifier, playerId)
+                    -- load player select with characters
+                    SendNUIMessage(json.encode(result))
+
+                    -- load player select with no characters
+                    -- MySQL.Async.execute(
+                    --     "INSERT INTO users (identifier) VALUES (@identifier)",
+                    --     {
+                    --         ["@identifier"] = identifier
+                    --     },
+                    --     function(rowsChanged)
+                    --         loadESXPlayer(identifier, playerId)
+                    --     end
+                    -- )
+                end
+            )
+        end
+    end
+)
 RegisterServerEvent("loadCharacters")
 AddEventHandler(
     "loadCharacters",
