@@ -14,7 +14,7 @@ AddEventHandler(
         -- array of chars from the database
         print("Triggering client event")
         TriggerClientEvent("mx-characters:loadCharacters", playerId, characters)
-        SendNuiMessage(json.encode(characters))
+        -- SendNuiMessage(json.encode(characters))
     end
 )
 
