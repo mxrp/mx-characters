@@ -21,7 +21,12 @@ RegisterNetEvent(
         print(playerId)
         print(characters)
         print(json.encode(characters))
-        SendNUIMessage(json.encode(characters))
+        if characters then
+            sendNUIMessage(json.encode(characters))
+        else
+            SendNUIMessage({})
+        end
+        -- SendNUIMessage(json.encode(characters))
     end
 )
 
