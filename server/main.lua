@@ -7,48 +7,13 @@ TriggerEvent(
     end
 )
 
-AddEventHandler(
-    "playerConnecting",
-    function(playerName, setKickReason, deferrals)
-        local playerId, identifier = source
-
-        for l, v in ipairs(GetPlayerIdentifiers(playerId)) do
-            if string.match(v, "license:") then
-                identifier = string.sub(v, 9)
-                break
-            end
-        end
-        if identifier then
-            MySQL.Async.fetchScalar(
-                'SELECT * FROM users WHERE identifier like "' .. identifier .. '%"',
-                {},
-                function(result)
-                    print("triggering mx-character event")
-                    -- loadESXPlayer(identifier, playerId)
-                    -- load player select with characters
-                    SendNUIMessage(json.encode(result))
-
-                    -- load player select with no characters
-                    -- MySQL.Async.execute(
-                    --     "INSERT INTO users (identifier) VALUES (@identifier)",
-                    --     {
-                    --         ["@identifier"] = identifier
-                    --     },
-                    --     function(rowsChanged)
-                    --         loadESXPlayer(identifier, playerId)
-                    --     end
-                    -- )
-                end
-            )
-        end
-    end
 )
 RegisterServerEvent("loadCharacters")
 AddEventHandler(
     "loadCharacters",
-    function(characters)
-        print("Going to send NUI Message")
+    function(playerId, characters)
         -- array of chars from the database
+        TriggerClientEvent('mx-characters:loadCharacters', playerId, characters )
         SendNuiMessage(json.encode(characters))
     end
 )

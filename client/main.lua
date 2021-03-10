@@ -14,6 +14,14 @@ Citizen.CreateThread(
     end
 )
 
+RegisterNetEvent(
+    "mx-characters:loadCharacters",
+    function(characters)
+        print("got the client event")
+        SendNUIMessage(json.encode(characters))
+    end
+)
+
 RegisterNUICallback(
     "createCharacter",
     function(data, cb)
