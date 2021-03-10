@@ -16,7 +16,7 @@ Citizen.CreateThread(
 
 RegisterNetEvent(
     "mx-characters:loadCharacters",
-    function(characters)
+    function(playerId, characters)
         print("got the client event")
         print(json.encode(characters))
         SendNUIMessage(json.encode(characters))
