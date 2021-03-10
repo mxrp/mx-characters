@@ -15,7 +15,7 @@ AddEventHandler(
         print("Triggering client event")
         print(playerId)
         print(characters)
-        TriggerClientEvent("mx-characters:loadCharacters", playerId, characters)
+        TriggerClientEvent("mx-characters:loadCharacters", GetPlayerIdentifier(playerId), characters)
         -- SendNuiMessage(json.encode(characters))
     end
 )
