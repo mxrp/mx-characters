@@ -13,9 +13,7 @@ AddEventHandler(
     function(playerId, characters)
         -- array of chars from the database
         print("Triggering client event")
-        print(playerId)
-        print(characters)
-        TriggerClientEvent("mx-characters:loadCharacters", GetPlayerIdentifier(playerId), characters)
+        TriggerClientEvent("mx-characters:loadCharacters", playerId, characters)
         -- SendNuiMessage(json.encode(characters))
     end
 )
