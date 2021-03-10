@@ -21,7 +21,7 @@ RegisterNetEvent(
         print(playerId)
         print(characters)
         print(json.encode(characters))
-        Citizen.createThread(
+        Citizen.CreateThread(
             function()
                 if characters then
                     sendNUIMessage(json.encode({characters = characters}))
