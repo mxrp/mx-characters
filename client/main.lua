@@ -22,9 +22,9 @@ RegisterNetEvent(
         print(characters)
         print(json.encode(characters))
         if characters then
-            sendNUIMessage(json.encode(characters))
+            sendNUIMessage(json.encode({characters = characters}))
         else
-            SendNUIMessage({})
+            SendNUIMessage({characters = nil})
         end
         -- SendNUIMessage(json.encode(characters))
     end
