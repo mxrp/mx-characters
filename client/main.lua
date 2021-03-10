@@ -21,11 +21,16 @@ RegisterNetEvent(
         print(playerId)
         print(characters)
         print(json.encode(characters))
-        if characters then
-            sendNUIMessage(json.encode({characters = characters}))
-        else
-            SendNUIMessage({characters = nil})
-        end
+        Citizen.createThread(
+            function()
+                if characters then
+                    sendNUIMessage(json.encode({characters = characters}))
+                else
+                    SendNUIMessage({characters = nil})
+                end
+            end
+        )
+
         -- SendNUIMessage(json.encode(characters))
     end
 )
