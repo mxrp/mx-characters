@@ -13,7 +13,7 @@ server_scripts {
 files(
     {
         "html/index.html",
-        "html/app.cs",
+        "html/app.css",
         "html/app.js"
     }
 )
