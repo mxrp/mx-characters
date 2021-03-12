@@ -1,3 +1,4 @@
+let characters = [];
 $(".character-box").hover(
   function () {
     $(this).css({
@@ -26,7 +27,7 @@ $(".character-box").click(function () {
 
 $("#play-char").click(function () {
   $.post(
-    "http://esx_kashacters/CharacterChosen",
+    "http://mx-characters/CharacterChosen",
     JSON.stringify({
       charid: $(".active-char").attr("data-charid"),
       ischar: $(".active-char").attr("data-ischar"),
@@ -36,13 +37,19 @@ $("#play-char").click(function () {
 });
 
 $("#deletechar").click(function () {
+  const id = $(".active-char").attr("data-charid");
   $.post(
-    "http://esx_kashacters/DeleteCharacter",
+    "http://mx-characters/DeleteCharacter",
     JSON.stringify({
-      charid: $(".active-char").attr("data-charid"),
+      charid: characters[id].identifier,
     })
   );
-  Kashacter.CloseUI();
+
+  $("[data-charid=" + id + "]").html(
+    '<h3 class="character-fullname"><i class="fas fa-plus"></i></h3>' +
+      '<div class="character-info">' +
+      '<p class="character-info-new">Create new character</p></div>'
+  );
 });
 
 (() => {
@@ -50,11 +57,11 @@ $("#deletechar").click(function () {
 
   Kashacter.ShowUI = function (data) {
     $(".main-container").css({ display: "block" });
-    if (data.characters !== null) {
-      $.each(data.characters, function (index, char) {
-        if (char.charid !== 0) {
-          var charid = char.identifier.charAt(4);
-          $("[data-charid=" + charid + "]")
+    characters = data.characters;
+    if (characters !== null) {
+      $.each(characters, function (index, char) {
+        if (char.identifier) {
+          $("[data-charid=" + index + "]")
             .html(
               '<h3 class="character-fullname">' +
                 char.firstname +
