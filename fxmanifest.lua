@@ -12,6 +12,8 @@ server_scripts {
 
 files(
     {
-        "html/index.html"
+        "html/index.html",
+        "html/app.cs",
+        "html/app.js"
     }
 )

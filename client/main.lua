@@ -17,15 +17,38 @@ Citizen.CreateThread(
 RegisterNetEvent(
     "mx-characters:loadCharacters",
     function(playerId, characters)
-        print("got the client event")
-        print(playerId)
-        print(characters)
-        print(json.encode(characters))
         Citizen.CreateThread(
             function()
+                -- DoScreenFadeOut(10)
+                -- while not IsScreenFadedOut() do
+                --     Citizen.Wait(10)
+                -- end
+                SetTimecycleModifier("hud_def_blur")
+                FreezeEntityPosition(GetPlayerPed(-1), true)
+                cam =
+                    CreateCamWithParams(
+                    "DEFAULT_SCRIPTED_CAMERA",
+                    -1355.93,
+                    -1487.78,
+                    520.75,
+                    300.00,
+                    0.00,
+                    0.00,
+                    100.00,
+                    false,
+                    0
+                )
+                SetCamActive(cam, true)
+                RenderScriptCams(true, false, 1, true, true)
                 if characters then
+                    SetNuiFocus(true, true)
+                    DisplayHud(false)
+                    DisplayRadar(false)
                     sendNUIMessage(json.encode({characters = characters, action = "openui"}))
                 else
+                    DisplayHud(false)
+                    DisplayRadar(false)
+                    SetNuiFocus(true, true)
                     SendNUIMessage({characters = nil, action = "openui"})
                 end
             end
