@@ -24,9 +24,9 @@ RegisterNetEvent(
         Citizen.CreateThread(
             function()
                 if characters then
-                    sendNUIMessage(json.encode({characters = characters}))
+                    sendNUIMessage(json.encode({characters = characters, action = "openui"}))
                 else
-                    SendNUIMessage({characters = nil})
+                    SendNUIMessage({characters = nil, action = "openui"})
                 end
             end
         )
